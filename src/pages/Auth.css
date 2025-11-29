@@ -1,0 +1,224 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 100%); */
+    overflow: hidden;
+  }
+  
+  .auth-panel {
+    min-height: 550px;
+    background-color: #1a1a2e;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    border: 1px solid #4e4e8e;
+  }
+  
+  .form-section, .overlay-section {
+    width: 50%;
+    padding: 3rem;
+  }
+  
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .overlay-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #5f2c82, #49a09d);
+  }
+  
+  .auth-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .auth-text {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  
+  .auth-input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #24243e;
+    border: 1px solid #4e4e8e;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  
+  .auth-input::placeholder {
+    color: #888;
+  }
+  
+  .auth-input:focus {
+    outline: none;
+    border-color: #5f2c82;
+    background-color: #2a2a4a;
+  }
+  
+  .auth-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #5f2c82, #49a09d);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+  }
+  
+  .auth-button:hover {
+    filter: brightness(1.2);
+  }
+  
+  .auth-button:disabled {
+    background: #555;
+    cursor: not-allowed;
+  }
+  
+  .ghost-button {
+    background-color: transparent;
+    border: 2px solid white;
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .ghost-button:hover {
+    background-color: white;
+    color: #5f2c82;
+  }
+  
+  .error-message {
+    color: #ff4d4d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    min-height: 1.2rem; 
+  }
+  
+  .loading-spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 3px solid #fff;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .social-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #24243e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px solid #4e4e8e;
+  }
+  
+  .social-icon:hover {
+    background-color: #5f2c82;
+  }
+  
+  .form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 15px;
+    color: #888;
+  }
+  
+  .input-group .auth-input {
+    padding-left: 40px;
+    margin-bottom: 0;
+  }
+  
+  .toggle-text {
+    text-align: center;
+    margin-top: 2rem;
+    color: #aaa;
+  }
+  
+  .toggle-text button {
+    color: #5f2c82;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .toggle-text button:hover {
+    text-decoration: underline;
+  }
+  
+  .form-wrapper {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .auth-panel {
+      flex-direction: column;
+      height: auto;
+      max-width: 400px;
+    }
+    .form-section, .overlay-section {
+      width: 100%;
+    }
+    .overlay-section {
+      display: none; /* Simplification for mobile */
+    }
+  }
+  
+  @media (min-width: 769px) {
+  }
