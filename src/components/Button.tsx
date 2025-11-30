@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const variantStyles = {
-    primary: 'bg-gradient-to-r from-[#5f2c82] to-[#49a09d] text-white hover:from-[#5f2c82]/90 hover:to-[#49a09d]/90 focus:ring-primary',
+    primary: 'bg-primary text-white hover:bg-primary/90 focus:ring-primary',
     secondary: 'bg-secondary text-white hover:bg-secondary/90 focus:ring-secondary',
     outline: 'border border-primary text-primary hover:bg-primary/10 focus:ring-primary',
     ghost: 'text-textSecondary hover:bg-surface focus:ring-textSecondary',

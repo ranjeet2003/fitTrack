@@ -6,7 +6,6 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PlusCircle, Utensils, Flame, Scale, Target as TargetIcon, History as HistoryIcon, TrendingUp, Activity, Calendar } from 'lucide-react';
-import { Avatar as MuiAvatar, IconButton as MuiIconButton, Button as MuiButton, LinearProgress as MuiLinearProgress, Box as MuiBox, Stack as MuiStack, Typography as MuiTypography } from '@mui/material';
 
 interface Goal {
   goalType: string;
@@ -100,9 +99,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <Card className="lg:col-span-2 relative overflow-hidden bg-white rounded-2xl shadow-lg">
+          <Card className="lg:col-span-2 relative overflow-hidden bg-surface rounded-2xl shadow-lg">
             {/* Header Section with Gradient */}
-            <div className="bg-gradient-to-br from-blue-500 to-purple-600 p-8 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-primary to-secondary p-8 relative overflow-hidden">
               <div className="absolute inset-0 opacity-20">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.3),transparent)]"></div>
               </div>
@@ -120,25 +119,25 @@ const Dashboard: React.FC = () => {
                 <div className="space-y-6">
                   {/* Stats Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-5 rounded-xl border border-blue-200 hover:shadow-md transition-shadow">
+                    <div className="bg-surface p-5 rounded-xl border border-border hover:shadow-md transition-shadow">
                       <div className="flex items-start justify-between">
                         <div>
-                          <p className="text-sm font-medium text-blue-600 mb-1">Goal Type</p>
-                          <p className="text-2xl font-bold text-gray-800">{userGoal.goalType}</p>
+                          <p className="text-sm font-medium text-secondary mb-1">Goal Type</p>
+                          <p className="text-2xl font-bold text-text">{userGoal.goalType}</p>
                         </div>
-                        <div className="bg-blue-500 p-2 rounded-lg">
+                        <div className="bg-secondary p-2 rounded-lg">
                           <TrendingUp size={20} className="text-white" />
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-5 rounded-xl border border-purple-200 hover:shadow-md transition-shadow">
+                    <div className="bg-surface p-5 rounded-xl border border-border hover:shadow-md transition-shadow">
                       <div className="flex items-start justify-between">
                         <div>
-                          <p className="text-sm font-medium text-purple-600 mb-1">Daily Calories</p>
-                          <p className="text-2xl font-bold text-gray-800">{userGoal.dailyCalories} <span className="text-base font-normal text-gray-600">kcal</span></p>
+                          <p className="text-sm font-medium text-primary mb-1">Daily Calories</p>
+                          <p className="text-2xl font-bold text-text">{userGoal.dailyCalories} <span className="text-base font-normal text-textSecondary">kcal</span></p>
                         </div>
-                        <div className="bg-purple-500 p-2 rounded-lg">
+                        <div className="bg-primary p-2 rounded-lg">
                           <Activity size={20} className="text-white" />
                         </div>
                       </div>
@@ -147,35 +146,35 @@ const Dashboard: React.FC = () => {
 
                   {/* Weight and BMI Cards */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Current Weight</p>
-                      <p className="text-3xl font-bold text-gray-800">{userGoal.currentWeight} <span className="text-lg font-normal text-gray-600">kg</span></p>
+                    <div className="bg-background p-5 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
+                      <p className="text-xs font-semibold text-textSecondary uppercase tracking-wide mb-2">Current Weight</p>
+                      <p className="text-3xl font-bold text-text">{userGoal.currentWeight} <span className="text-lg font-normal text-textSecondary">kg</span></p>
                     </div>
 
-                    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Target Weight</p>
-                      <p className="text-3xl font-bold text-gray-800">{userGoal.targetWeight} <span className="text-lg font-normal text-gray-600">kg</span></p>
+                    <div className="bg-background p-5 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
+                      <p className="text-xs font-semibold text-textSecondary uppercase tracking-wide mb-2">Target Weight</p>
+                      <p className="text-3xl font-bold text-text">{userGoal.targetWeight} <span className="text-lg font-normal text-textSecondary">kg</span></p>
                     </div>
 
-                    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">BMI</p>
-                      <p className="text-3xl font-bold text-gray-800">{userGoal.bmi}</p>
+                    <div className="bg-background p-5 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow">
+                      <p className="text-xs font-semibold text-textSecondary uppercase tracking-wide mb-2">BMI</p>
+                      <p className="text-3xl font-bold text-text">{userGoal.bmi}</p>
                     </div>
                   </div>
 
                   {/* Plan Section */}
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl border border-gray-200">
+                  <div className="bg-surface p-6 rounded-xl border border-border">
                     <div className="flex items-center space-x-2 mb-4">
-                      <Calendar size={20} className="text-blue-600" />
-                      <h3 className="text-xl font-bold text-gray-800">Your Personalized Plan</h3>
+                      <Calendar size={20} className="text-primary" />
+                      <h3 className="text-xl font-bold text-text">Your Personalized Plan</h3>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">{userGoal.plan}</p>
+                    <p className="text-textSecondary leading-relaxed">{userGoal.plan}</p>
                   </div>
 
                   {/* Action Button */}
                   <button
                     onClick={() => navigate('/goal-history')}
-                    className="w-full bg-white border-2 border-blue-500 text-blue-600 font-semibold py-3 px-6 rounded-xl hover:bg-blue-50 transition-colors duration-200 flex items-center justify-center space-x-2"
+                    className="w-full bg-surface border-2 border-primary text-primary font-semibold py-3 px-6 rounded-xl hover:bg-primary/10 transition-colors duration-200 flex items-center justify-center space-x-2"
                   >
                     <Calendar size={20} />
                     <span>View Goal History</span>
@@ -183,15 +182,15 @@ const Dashboard: React.FC = () => {
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <div className="bg-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <TargetIcon size={40} className="text-gray-400" />
+                  <div className="bg-background w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <TargetIcon size={40} className="text-textSecondary" />
                   </div>
-                  <p className="text-xl text-gray-600 mb-6">
+                  <p className="text-xl text-textSecondary mb-6">
                     It looks like you haven't set your fitness goal yet.
                   </p>
                   <button
                     onClick={() => navigate('/goal-setup')}
-                    className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-8 rounded-xl hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2 mx-auto"
+                    className="bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-8 rounded-xl hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2 mx-auto"
                   >
                     <PlusCircle size={20} />
                     <span>Set Your Goal</span>
@@ -216,7 +215,7 @@ const Dashboard: React.FC = () => {
           </div>
 
           {userGoal && (
-            <div className="bg-background p-4 rounded-sm border border-border text-center">
+            <div className="bg-background p-4 rounded-lg border border-border text-center">
               <p className="text-textSecondary text-md">Recommended Daily Intake</p>
               <p className="text-3xl font-bold text-secondary mt-1">
                 {userGoal.dailyCalories}
