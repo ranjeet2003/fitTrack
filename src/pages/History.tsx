@@ -2,23 +2,9 @@ import React, { useEffect, useState, useCallback } from 'react';
 import API from '../api';
 import Card from '../components/Card';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { useTheme } from '../context/ThemeContext'; // Import the useTheme hook
 import { History as HistoryIcon, CalendarDays, Flame } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
-// Define PALETTE for recharts
-const PALETTE = {
-  primary: '#9E7FFF',
-  secondary: '#38bdf8',
-  accent: '#f472b6',
-  background: '#171717',
-  surface: '#262626',
-  text: '#FFFFFF',
-  textSecondary: '#A3A3A3',
-  border: '#2F2F2F',
-  success: '#10b981',
-  warning: '#f59e0b',
-  error: '#ef4444',
-};
 
 interface DailyCalorieData {
   date: string;
@@ -29,6 +15,23 @@ const History: React.FC = () => {
   const [historyData, setHistoryData] = useState<DailyCalorieData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const { theme } = useTheme(); // Get the current theme
+  const [palette, setPalette] = useState({});
+
+  // Effect to update the palette when the theme changes
+  useEffect(() => {
+    const rootStyle = getComputedStyle(document.documentElement);
+    const newPalette = {
+      primary: rootStyle.getPropertyValue('--color-primary').trim(),
+      secondary: rootStyle.getPropertyValue('--color-secondary').trim(),
+      text: rootStyle.getPropertyValue('--color-text').trim(),
+      textSecondary: rootStyle.getPropertyValue('--color-textSecondary').trim(),
+      surface: rootStyle.getPropertyValue('--color-surface').trim(),
+      border: rootStyle.getPropertyValue('--color-border').trim(),
+    };
+    setPalette(newPalette);
+  }, [theme]);
+
 
   const fetchHistory = useCallback(async () => {
     setLoading(true);
@@ -48,7 +51,7 @@ const History: React.FC = () => {
     fetchHistory();
   }, [fetchHistory]);
 
-  if (loading) {
+  if (loading || Object.keys(palette).length === 0) { // Also wait for palette to be ready
     return <LoadingSpinner />;
   }
 
@@ -67,7 +70,7 @@ const History: React.FC = () => {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
               {historyData.map((day) => (
-                <div key={day.date} className="bg-background p-5 rounded-sm border border-border flex items-center justify-between shadow-md transition-transform duration-200 hover:scale-[1.02]">
+                <div key={day.date} className="bg-background p-5 rounded-lg border border-border flex items-center justify-between shadow-md transition-transform duration-200 hover:scale-[1.02]">
                   <div className="flex items-center">
                     <CalendarDays size={24} className="text-primary mr-3" />
                     <div>
@@ -83,7 +86,7 @@ const History: React.FC = () => {
             <h2 className="text-3xl font-bold text-text mb-6 flex items-center justify-center">
               <Flame size={32} className="mr-3 text-primary" /> Calorie Consumption Over Time
             </h2>
-                    <div className="bg-background p-6 rounded-sm border border-border h-64 md:h-96">
+            <div className="bg-background p-6 rounded-lg border border-border h-64 md:h-96">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={historyData}
@@ -94,16 +97,16 @@ const History: React.FC = () => {
                     bottom: 5,
                   }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke={PALETTE.border} />
-                  <XAxis dataKey="date" stroke={PALETTE.textSecondary} tickFormatter={(tick) => new Date(tick).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} />
-                  <YAxis stroke={PALETTE.textSecondary} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={palette.border} />
+                  <XAxis dataKey="date" stroke={palette.textSecondary} tickFormatter={(tick) => new Date(tick).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} />
+                  <YAxis stroke={palette.textSecondary} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: PALETTE.surface, border: `1px solid ${PALETTE.border}`, borderRadius: '8px' }}
-                    labelStyle={{ color: PALETTE.primary, fontWeight: 'bold' }}
-                    itemStyle={{ color: PALETTE.text }}
+                    contentStyle={{ backgroundColor: palette.surface, border: `1px solid ${palette.border}`, borderRadius: '8px' }}
+                    labelStyle={{ color: palette.primary, fontWeight: 'bold' }}
+                    itemStyle={{ color: palette.text }}
                     formatter={(value: number) => [`${value} kcal`, 'Calories']}
                   />
-                  <Bar dataKey="totalCalories" fill={PALETTE.primary} />
+                  <Bar dataKey="totalCalories" fill={palette.primary} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

@@ -7,7 +7,7 @@ import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 import OAuth from '../components/OAuth';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import LoadingSpinner from '../components/LoadingSpinner';
+import InlineSpinner from '../components/InlineSpinner';
 
 const Auth: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -19,7 +19,7 @@ const Auth: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-background p-4">
+    <div className="flex justify-center items-center min-h-screen p-4">
       <div className="w-full max-w-4xl flex rounded-2xl shadow-2xl overflow-hidden border border-border">
         {/* Form Section */}
         <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-surface relative">
@@ -88,8 +88,8 @@ const LoginForm: React.FC<{ toggleForm: () => void }> = ({ toggleForm }) => {
         <Input id="login-email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} error={error && error.includes('email') ? error : ''} />
         <Input id="login-password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} error={error && !error.includes('email') ? error : ''} />
         {error && <p className="text-center text-error text-sm min-h-[1.25rem] mb-4">{error}</p>}
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? <LoadingSpinner /> : 'Sign In'}
+        <Button type="submit" className="w-full min-h-[44px]" disabled={loading}>
+          {loading ? <InlineSpinner /> : 'Sign In'}
         </Button>
       </form>
       <p className="text-center mt-8 text-textSecondary">
@@ -136,8 +136,8 @@ const SignUpForm: React.FC<{ toggleForm: () => void }> = ({ toggleForm }) => {
         <Input id="signup-email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <Input id="signup-password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         {error && <p className={`text-center ${error.includes('successful') ? 'text-success' : 'text-error'} text-sm min-h-[1.25rem] mb-4`}>{error}</p>}
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? <LoadingSpinner /> : 'Sign Up'}
+        <Button type="submit" className="w-full min-h-[44px]" disabled={loading}>
+          {loading ? <InlineSpinner /> : 'Sign Up'}
         </Button>
       </form>
 
